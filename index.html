@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Адвокат — Юридическая помощь и защита</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07131f;
+      --bg-secondary: #0e1f31;
+      --gold: #caa45d;
+      --gold-light: #e5c98f;
+      --white: #ffffff;
+      --text: #d7dee7;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --transition: 0.3s ease;
+      --container: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .section-subtitle {
+      color: var(--text);
+      max-width: 700px;
+      margin-bottom: 50px;
+      font-size: 1.05rem;
+    }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 19, 31, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #101010;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--gold-light);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 110px;
+      background:
+        linear-gradient(rgba(7,19,31,0.86), rgba(7,19,31,0.94)),
+        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(202,164,93,0.12);
+      border: 1px solid rgba(202,164,93,0.3);
+      padding: 10px 18px;
+      border-radius: 999px;
+      color: var(--gold-light);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: var(--text);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 35px;
+      box-shadow: var(--shadow);
+    }
+
+    .experience {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--bg-secondary);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 500px;
+    }
+
+    .about-content p {
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 22px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 35px 28px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(202,164,93,0.4);
+    }
+
+    .service-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(202,164,93,0.12);
+      margin-bottom: 22px;
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+
+    .service-card p {
+      color: var(--text);
+    }
+
+    /* CTA */
+
+    .cta {
+      background:
+        linear-gradient(rgba(7,19,31,0.92), rgba(7,19,31,0.92)),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      text-align: center;
+    }
+
+    .cta-box {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: var(--text);
+      margin-bottom: 35px;
+      font-size: 1.1rem;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+
+    .contact-card,
+    .contact-form {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .contact-item {
+      margin-bottom: 28px;
+    }
+
+    .contact-item h4 {
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      color: var(--text);
+    }
+
+    .contact-form form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1rem;
+      resize: none;
+      transition: var(--transition);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: rgba(202,164,93,0.5);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* ANIMATION */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .about-image img {
+        min-height: 380px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #091725;
+        flex-direction: column;
+        padding: 25px 20px;
+        display: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 140px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .contact-card,
+      .contact-form {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">
+        Адвокат<span>.</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">Об адвокате</a>
+        <a href="#services">Услуги</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#consultation" class="btn btn-primary">Консультация</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="fade-in">
+          <div class="hero-badge">
+            Более 20 лет профессиональной юридической практики
+          </div>
+
+          <h1>
+            Надёжная <span>юридическая защита</span> ваших интересов
+          </h1>
+
+          <p>
+            Профессиональная помощь по гражданским, арбитражным и уголовным делам.
+            Индивидуальный подход, глубокая экспертиза и защита интересов доверителей
+            на всех этапах судебного процесса.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#consultation" class="btn btn-primary">
+              Записаться на консультацию
+            </a>
+
+            <a href="#services" class="btn" style="border:1px solid rgba(255,255,255,0.15); color:white;">
+              Смотреть услуги
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card fade-in">
+          <div class="experience">20+</div>
+          <h3>Лет успешной практики</h3>
+          <p>
+            Комплексное юридическое сопровождение, представительство в судах,
+            защита интересов бизнеса и частных клиентов.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+
+        <div class="about-image fade-in">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Адвокат">
+        </div>
+
+        <div class="about-content fade-in">
+          <h2 class="section-title">Об адвокате</h2>
+
+          <p>
+            Адвокат с более чем 20-летним опытом профессиональной деятельности
+            в области гражданского, корпоративного, арбитражного и уголовного права.
+          </p>
+
+          <p>
+            За годы практики успешно сопровождены сотни судебных процессов,
+            проведены сложные переговоры и реализованы стратегии защиты интересов клиентов
+            как в досудебном порядке, так и в судах различных инстанций.
+          </p>
+
+          <p>
+            Главные принципы работы — конфиденциальность, ответственность,
+            безупречная профессиональная репутация и ориентация на результат.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>20+</strong>
+              <span>лет практики</span>
+            </div>
+
+            <div class="stat">
+              <strong>500+</strong>
+              <span>дел успешно завершено</span>
+            </div>
+
+            <div class="stat">
+              <strong>95%</strong>
+              <span>клиентов по рекомендации</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+
+        <h2 class="section-title fade-in">Юридические услуги</h2>
+
+        <p class="section-subtitle fade-in">
+          Профессиональная правовая помощь и защита интересов физических лиц и бизнеса
+          в ключевых областях права.
+        </p>
+
+        <div class="services-grid">
+
+          <article class="service-card fade-in">
+            <div class="service-icon">⚖</div>
+            <h3>Судебное представительство</h3>
+            <p>
+              Защита интересов в судах общей юрисдикции, арбитражных судах
+              и на стадии исполнительного производства.
+            </p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon">📑</div>
+            <h3>Гражданские споры</h3>
+            <p>
+              Споры по договорам, недвижимости, наследству, семейным и имущественным вопросам.
+            </p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon">🏛</div>
+            <h3>Арбитраж и бизнес</h3>
+            <p>
+              Юридическое сопровождение компаний, корпоративные споры,
+              защита интересов предпринимателей.
+            </p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon">🛡</div>
+            <h3>Уголовная защита</h3>
+            <p>
+              Комплексная защита доверителей на стадии следствия и в суде,
+              сопровождение процессуальных действий.
+            </p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon">✍</div>
+            <h3>Юридическая экспертиза</h3>
+            <p>
+              Анализ договоров, правовых рисков, подготовка претензий,
+              исков и иных правовых документов.
+            </p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon">🤝</div>
+            <h3>Консультации</h3>
+            <p>
+              Подробный правовой анализ ситуации и выработка стратегии
+              защиты ваших интересов.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="consultation">
+      <div class="container">
+        <div class="cta-box fade-in">
+
+          <h2>
+            Нужна квалифицированная юридическая помощь?
+          </h2>
+
+          <p>
+            Получите профессиональную консультацию и персональную стратегию
+            решения вашей правовой ситуации.
+          </p>
+
+          <a href="#contacts" class="btn btn-primary">
+            Записаться на консультацию
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="container">
+
+        <h2 class="section-title fade-in">Контакты</h2>
+
+        <p class="section-subtitle fade-in">
+          Свяжитесь для консультации, обсуждения ситуации или записи на личный приём.
+        </p>
+
+        <div class="contact-grid">
+
+          <div class="contact-card fade-in">
+
+            <div class="contact-item">
+              <h4>Телефон</h4>
+              <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+            </div>
+
+            <div class="contact-item">
+              <h4>Email</h4>
+              <a href="mailto:lawyer@example.com">lawyer@example.com</a>
+            </div>
+
+            <div class="contact-item">
+              <h4>Адрес офиса</h4>
+              <p>г. Москва, ул. Примерная, 15</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>Режим работы</h4>
+              <p>Пн–Пт: 09:00–19:00</p>
+            </div>
+
+          </div>
+
+          <div class="contact-form fade-in">
+
+            <form id="form">
+              <input type="text" placeholder="Ваше имя" required>
+              <input type="tel" placeholder="Телефон" required>
+              <input type="email" placeholder="Email">
+              <textarea rows="6" placeholder="Кратко опишите вашу ситуацию"></textarea>
+
+              <button type="submit" class="btn btn-primary">
+                Отправить заявку
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Адвокат. Все права защищены.
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    const form = document.getElementById('form');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      alert('Спасибо! Ваша заявка успешно отправлена.');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
